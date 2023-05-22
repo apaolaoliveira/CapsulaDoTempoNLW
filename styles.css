@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+
+:root{
+  font-size: 16px;
+}
+
+::-webkit-scrollbar{
+  width: 7px; 
+}
+
+::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #eaeaea;
+  border-radius: 50px;
+}
+
+@keyframes entering{
+  from {
+    opacity: 0; 
+    transform: translateY(-200px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);  
+  }
+}
+
+body {
+  background-color: #121215;
+  color: #eaeaea;
+  font-family: "Noto Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  display: grid;  
+  grid-template-areas: "profile timeline";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
+}
+
+nav {
+  padding: 64px;
+  grid-area: timeline;
+  
+  overflow-y: scroll; /*Deixa a parte da nave habilitada para scroll, fazendo com que o aside fique fixo*/
+  animation: entering 0.7s ease-in-out;
+}
+
+.memory {
+  /*Classe pai*/
+  display: flex; /* deixa flexível*/
+  flex-direction: column; /*flexível porém em coluna*/
+  gap: 15px; /*Espaçamento entre elementos*/
+  text-decoration: none;
+  margin-bottom: 64px;
+}
+
+.memory small {
+  color: #bebebf;
+  font-size: 0.75rem;
+}
+
+.memory h1 {
+  color: #bebebf;
+  font-size: 2rem;
+}
+
+.memory img {
+  width: 700px;
+  height: 280px;
+  border-radius: 8px;
+  
+  object-fit: cover; /*Faz com que o objeto va mudando no tamanho do height sem ficar muito esticado*/
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);  
+}
+
+.container{
+  width: 650px;
+  height: 280px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px #1b1629;
+  overflow: hidden;
+}
+
+.memory:hover img{
+  transform: scale(1.1);
+}
+
+.memory p {
+  font-size: 1.2rem;
+  color: #bebebf;
+  line-height: 28px;
+}
+
+aside {
+  grid-area: profile;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  border-right: 1px solid;
+  border-image: linear-gradient(#727275, #2c2c31) 1; /* último parâmetro é a opacidade*/
+
+  background-image: url(./assets/application/background.svg);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+
+aside *{ /*Pega apenas os elementos do aside*/
+  animation: entering 0.7s ease-in-out;
+}
+
+aside img:nth-child(2) {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+
+  border: 4px solid transparent;
+  background: linear-gradient(#d39e33, #ed5636, #633bbc) padding-box,
+    linear-gradient(260deg, #d39e33, #ed5636, #633bbc) border-box;
+}
+
+aside p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+aside span {
+  font-size: 0.75rem;
+  color: #9e9ea0;
+}
+
+@media (max-width: 768px) {
+  :root{
+    font-size: 14px;
+  }
+
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 0.8fr;
+    grid-template-areas: 
+    "profile" 
+    "timeline";
+  }
+
+  aside{
+    border-right: none;
+    padding: 32px 12px;    
+  }
+
+  nav{
+    overflow-y: visible;
+    padding: 22px;
+  }  
+}
