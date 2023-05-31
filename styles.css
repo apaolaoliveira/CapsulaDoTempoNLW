@@ -35,7 +35,6 @@
 body {
   background-color: #121215;
   color: #eaeaea;
-  font-family: "Noto Sans", sans-serif;
   font-family: "Roboto", sans-serif;
   display: grid;  
   grid-template-areas: "profile timeline";
@@ -51,23 +50,44 @@ nav {
   animation: entering 0.7s ease-in-out;
 }
 
+.rodape {
+  color: #f07056;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 .memory {
   /*Classe pai*/
   display: flex; /* deixa flexível*/
   flex-direction: column; /*flexível porém em coluna*/
-  gap: 15px; /*Espaçamento entre elementos*/
+  gap: 20px; /*Espaçamento entre elementos*/
   text-decoration: none;
   margin-bottom: 64px;
+  text-align: justify;
 }
 
 .memory small {
   color: #bebebf;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .memory h1 {
   color: #bebebf;
   font-size: 2rem;
+}
+
+.memory li{
+  color: #bebebf;
+  font-size: 1.2rem;
+  margin-left: 19px;
+}
+
+.memory a{
+  color: #bebebf;
+  text-decoration: underline;
+  text-decoration-thickness: 2.5px;
+  text-decoration-color: #633bbc;
+  cursor: pointer;
 }
 
 .memory img {
@@ -77,12 +97,12 @@ nav {
   
   object-fit: cover; /*Faz com que o objeto va mudando no tamanho do height sem ficar muito esticado*/
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   transition: transform 0.5s ease-in-out;
   transform: translateX(0);  
 }
 
-.container{
+.slider{
   width: 650px;
   height: 280px;
   border-radius: 8px;
@@ -90,9 +110,62 @@ nav {
   overflow: hidden;
 }
 
-.memory:hover img{
-  transform: scale(1.1);
+.slides{
+  width: 650px;
+  height: 280px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }
+
+.slider input {
+  display: none;
+}
+
+.slide img{
+  width: 650px;
+}
+
+.manual-navigation{
+  position: absolute;  
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.manual-btn{
+  border: 2px solid #bebebf;
+  padding: 5px;
+  margin-top: -5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.manual-btn:not(:last-child){
+  margin-bottom: 25px;
+}
+
+.manual-btn:hover{
+  background-color: #bebebf;
+}
+
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+  margin-left: -37%;
+}
+
+#radio3:checked ~ .first{
+  margin-left: -75%;
+}
+
+/* .memory:hover img{
+  transform: scale(1.1);
+} */
 
 .memory p {
   font-size: 1.2rem;
